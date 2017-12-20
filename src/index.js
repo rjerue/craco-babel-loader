@@ -38,7 +38,7 @@ const getArray = (source: ?Condition): Array<Condition> => {
     return Array.isArray(source) ? source : [source];
 };
 
-const include = (config: ConfigType, ...includes: Array<Condition>) => {
+export const include = (config: ConfigType, ...includes: Array<Condition>) => {
     const babel_loader: LoaderRule = getBabelLoader(config.module.rules);
 
     const include_config = getArray(babel_loader.include);
@@ -57,7 +57,7 @@ const include = (config: ConfigType, ...includes: Array<Condition>) => {
     return config;
 };
 
-const exclude = (config: ConfigType, ...excludes: Array<Condition>) => {
+export const exclude = (config: ConfigType, ...excludes: Array<Condition>) => {
     const babel_loader: LoaderRule = getBabelLoader(config.module.rules);
 
     const exclude_config = getArray(babel_loader.exclude);
@@ -74,9 +74,4 @@ const exclude = (config: ConfigType, ...excludes: Array<Condition>) => {
     babel_loader.exclude = excludes;
 
     return config;
-};
-
-module.exports = {
-    include,
-    exclude
 };
