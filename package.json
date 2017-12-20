@@ -28,7 +28,8 @@
     "build": "microbundle",
     "dev": "microbundle watch",
     "pretty": "prettier --write --tab-width 4 'src/**/*.js' 'test/**/*.js'",
-    "lint": "eslint src test"
+    "lint": "eslint src test",
+    "flow": "flow"
   },
   "keywords": [
     "babel-loader",
@@ -42,6 +43,7 @@
   "devDependencies": {
     "babel-eslint": "^8.0.3",
     "eslint": "^4.13.1",
+    "flow-bin": "^0.61.0",
     "microbundle": "^0.2.4",
     "prettier": "^1.9.2"
   }

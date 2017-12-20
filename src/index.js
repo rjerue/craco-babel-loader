@@ -1,11 +1,45 @@
+// @flow
+
 const { getBabelLoader } = require("react-app-rewired");
 
-const getArray = source => {
+// see: https://webpack.js.org/configuration/module/#condition
+type Condition =
+    | string
+    | RegExp
+    | Array<Condition>
+    | ((arg: any) => boolean)
+    | {
+          +test?: Condition,
+          +include?: Condition,
+          +exclude?: Condition,
+          +and?: Array<Condition>,
+          +or?: Array<Condition>,
+          +not?: Array<Condition>
+      };
+
+type ConfigType = {
+    module: {
+        rules: {
+            // omitted
+        }
+    }
+};
+
+type LoaderRule = {
+    include?: Condition,
+    exclude?: Condition
+};
+
+const getArray = (source: ?Condition): Array<Condition> => {
+    if (!source) {
+        return [];
+    }
+
     return Array.isArray(source) ? source : [source];
 };
 
-const include = (config, ...includes) => {
-    const babel_loader = getBabelLoader(config.module.rules);
+const include = (config: ConfigType, ...includes: Array<Condition>) => {
+    const babel_loader: LoaderRule = getBabelLoader(config.module.rules);
 
     const include_config = getArray(babel_loader.include);
 
@@ -23,8 +57,8 @@ const include = (config, ...includes) => {
     return config;
 };
 
-const exclude = (config, ...excludes) => {
-    const babel_loader = getBabelLoader(config.module.rules);
+const exclude = (config: ConfigType, ...excludes: Array<Condition>) => {
+    const babel_loader: LoaderRule = getBabelLoader(config.module.rules);
 
     const exclude_config = getArray(babel_loader.exclude);
 
