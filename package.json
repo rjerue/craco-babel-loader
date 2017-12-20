@@ -25,8 +25,8 @@
     ]
   },
   "scripts": {
-    "build": "microbundle",
-    "dev": "microbundle watch",
+    "build": "microbundle --compress=false",
+    "dev": "microbundle watch --compress=false",
     "pretty": "prettier --write --tab-width 4 'src/**/*.js' 'test/**/*.js'",
     "prepublish": "npm run lint && npm run test && npm run build",
     "lint": "eslint src test",
