@@ -1,0 +1,48 @@
+{
+  "name": "react-app-rewire-babel-loader",
+  "version": "0.1.0",
+  "description": "Rewire `babel-loader` loader in your `create-react-app` project using `react-app-rewired`.",
+  "source": "src/index.js",
+  "module": "dist/index.es.js",
+  "main": "dist/index.js",
+  "umd:main": "dist/index.umd.js",
+  "repository": "https://github.com/dashed/react-app-rewire-babel-loader",
+  "author": {
+    "name": "Alberto Leal",
+    "email": "mailforalberto@gmail.com",
+    "url": "github.com/dashed"
+  },
+  "license": "MIT",
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true,
+      "mocha": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ]
+  },
+  "scripts": {
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "pretty": "prettier --write --tab-width 4 'src/**/*.js' 'test/**/*.js'",
+    "lint": "eslint src test"
+  },
+  "keywords": [
+    "babel-loader",
+    "react-app-rewired",
+    "webpack",
+    "create-react-app"
+  ],
+  "dependencies": {
+    "react-app-rewired": "^1.4.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.3",
+    "eslint": "^4.13.1",
+    "microbundle": "^0.2.4",
+    "prettier": "^1.9.2"
+  }
+}
