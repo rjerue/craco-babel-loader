@@ -3,6 +3,12 @@ react-app-rewire-babel-loader
 
 > Rewire [`babel-loader`](https://github.com/babel/babel-loader) loader in your [`create-react-app`](https://github.com/facebookincubator/create-react-app) project using [`react-app-rewired`](https://github.com/timarney/react-app-rewired).
 
+Say there is an awesome library you found on npm that you want to use within your **un-ejected**  [`create-react-app`](https://github.com/facebookincubator/create-react-app) project, but unfortunately, it's published in ES6+ (since `node_modules` doesn't go through `babel-loader`), so you cannot *really* use it.
+
+However, with [`react-app-rewired`](https://github.com/timarney/react-app-rewired) and this library, `react-app-rewire-babel-loader`, you can use that awesome library you've found.
+
+See below for usage.
+
 Usage
 =====
 
