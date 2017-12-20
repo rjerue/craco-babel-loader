@@ -1,6 +1,6 @@
 {
   "name": "react-app-rewire-babel-loader",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Rewire `babel-loader` loader in your `create-react-app` project using `react-app-rewired`.",
   "source": "src/index.js",
   "module": "dist/index.es.js",
