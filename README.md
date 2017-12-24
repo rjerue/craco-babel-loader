@@ -1,4 +1,4 @@
-react-app-rewire-babel-loader
+react-app-rewire-babel-loader [![npm version](https://img.shields.io/npm/v/react-app-rewire-babel-loader.svg?style=flat)](https://www.npmjs.com/package/react-app-rewire-babel-loader)
 =============================
 
 > Rewire [`babel-loader`](https://github.com/babel/babel-loader) loader in your [`create-react-app`](https://github.com/facebookincubator/create-react-app) project using [`react-app-rewired`](https://github.com/timarney/react-app-rewired).
@@ -9,8 +9,18 @@ However, with [`react-app-rewired`](https://github.com/timarney/react-app-rewire
 
 See below for usage.
 
-Usage
-=====
+## Install
+
+
+```sh
+$ yarn add react-app-rewire-babel-loader
+# npm v5+
+$ npm install react-app-rewire-babel-loader
+# before npm v5
+$ npm install --save react-app-rewire-babel-loader
+```
+
+## Usage
 
 ```js
 // config-overrides.js
