@@ -1,16 +1,16 @@
 {
-  "name": "react-app-rewire-babel-loader",
-  "version": "0.1.1",
-  "description": "Rewire `babel-loader` loader in your `create-react-app` project using `react-app-rewired`.",
+  "name": "craco-babel-loader",
+  "version": "0.1.2",
+  "description": "Rewire `babel-loader` loader in your `create-react-app` project using `craco`.",
   "source": "src/index.js",
   "module": "dist/index.es.js",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
-  "repository": "https://github.com/dashed/react-app-rewire-babel-loader",
+  "repository": "https://github.com/rjerue/craco-babel-loader",
   "author": {
-    "name": "Alberto Leal",
-    "email": "mailforalberto@gmail.com",
-    "url": "github.com/dashed"
+    "name": "Ryan Jerue",
+    "email": "ryan@jerue.org",
+    "url": "http://jerue.org"
   },
   "license": "MIT",
   "eslintConfig": {
@@ -34,12 +34,12 @@
   },
   "keywords": [
     "babel-loader",
-    "react-app-rewired",
+    "craco",
     "webpack",
     "create-react-app"
   ],
   "dependencies": {
-    "react-app-rewired": "^1.4.0"
+    "@craco/craco": "^3.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",

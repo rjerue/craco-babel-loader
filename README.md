@@ -1,11 +1,10 @@
-react-app-rewire-babel-loader [![npm version](https://img.shields.io/npm/v/react-app-rewire-babel-loader.svg?style=flat)](https://www.npmjs.com/package/react-app-rewire-babel-loader)
-=============================
+This is a port of [react-app-rewire-babel-loader](https://github.com/dashed/react-app-rewire-babel-loader) to [`CRACO`](https://github.com/sharegate/craco) instead of [react-app-rewired](https://github.com/timarney/react-app-rewired). `react-app-rewired` is not being updated for version 2 of CRA, and I wanted to use the rewired babel loader with a solution designed for CRA 2.
 
-> Rewire [`babel-loader`](https://github.com/babel/babel-loader) loader in your [`create-react-app`](https://github.com/facebookincubator/create-react-app) project using [`react-app-rewired`](https://github.com/timarney/react-app-rewired).
+> Rewire [`babel-loader`](https://github.com/babel/babel-loader) loader in your [`create-react-app`](https://github.com/facebookincubator/create-react-app) project using [`CRACO`](https://github.com/sharegate/craco).
 
 Say there is an awesome library you found on npm that you want to use within your **un-ejected**  [`create-react-app`](https://github.com/facebookincubator/create-react-app) project, but unfortunately, it's published in ES6+ (since `node_modules` doesn't go through `babel-loader`), so you cannot *really* use it.
 
-However, with [`react-app-rewired`](https://github.com/timarney/react-app-rewired) and this library, `react-app-rewire-babel-loader`, you can use that awesome library you've found.
+However, with [`CRACO`](https://github.com/sharegate/craco) and this library, `craco-babel-loader`, you can use that awesome library you've found.
 
 See below for usage.
 
@@ -13,50 +12,42 @@ See below for usage.
 
 
 ```sh
-$ yarn add react-app-rewire-babel-loader
+$ yarn add craco-babel-loader
 # npm v5+
-$ npm install react-app-rewire-babel-loader
+$ npm install craco-babel-loader
 # before npm v5
-$ npm install --save react-app-rewire-babel-loader
+$ npm install --save craco-babel-loader
 ```
 
 ## Usage
 
 ```js
-// config-overrides.js
-// see: https://github.com/timarney/react-app-rewired
+// crago.config.js
+// see: https://github.com/sharegate/craco
 
 const path = require("path");
 const fs = require("fs");
 
-const rewireBabelLoader = require("react-app-rewire-babel-loader");
+const rewireBabelLoader = require("craco-babel-loader");
 
 // helpers
 
 const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
-module.exports = function override(config, env) {
+module.exports = {
+  plugins: [
+        //This is a craco plugin: https://github.com/sharegate/craco/blob/master/packages/craco/README.md#configuration-overview
+        { plugin: rewireBabelLoader, 
+          options: { 
+            includes: [resolveApp("node_modules/isemail")], //put things you want to include in array here
+            excludes: [/(node_modules|bower_components)/] //things you want to exclude here
+            //you can omit include or exclude if you only want to use one option
+          }
+        }
+    ]
+}
 
-  // white-list some npm modules to the babel-loader pipeline
-  // see: https://webpack.js.org/configuration/module/#rule-include
-
-  config = rewireBabelLoader.include(
-    config,
-    resolveApp("node_modules/isemail")
-  );
-
-  // black-list some modules from the babel-loader pipeline
-  // see: https://webpack.js.org/configuration/module/#rule-exclude
-
-  config = rewireBabelLoader.exclude(
-    config,
-    /(node_modules|bower_components)/
-  );
-
-  return config;
-
-};
 ```
 
 

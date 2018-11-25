@@ -1,6 +1,6 @@
 // @flow
 
-const { getBabelLoader } = require("react-app-rewired");
+const { getLoader, loaderByName } = require("@craco/craco");
 
 // see: https://webpack.js.org/configuration/module/#condition
 type Condition =
@@ -17,14 +17,6 @@ type Condition =
           +not?: Array<Condition>
       };
 
-type ConfigType = {
-    module: {
-        rules: {
-            // omitted
-        }
-    }
-};
-
 type LoaderRule = {
     include?: Condition,
     exclude?: Condition
@@ -38,9 +30,7 @@ const getArray = (source: ?Condition): Array<Condition> => {
     return Array.isArray(source) ? source : [source];
 };
 
-export const include = (config: ConfigType, ...includes: Array<Condition>) => {
-    const babel_loader: LoaderRule = getBabelLoader(config.module.rules);
-
+const include = (babel_loader: LoaderRule, ...includes: Array<Condition>) => {
     const include_config = getArray(babel_loader.include);
 
     includes = includes.reduce((accumulator, include) => {
@@ -53,13 +43,9 @@ export const include = (config: ConfigType, ...includes: Array<Condition>) => {
     }, include_config);
 
     babel_loader.include = includes;
-
-    return config;
 };
 
-export const exclude = (config: ConfigType, ...excludes: Array<Condition>) => {
-    const babel_loader: LoaderRule = getBabelLoader(config.module.rules);
-
+const exclude = (babel_loader: LoaderRule, ...excludes: Array<Condition>) => {
     const exclude_config = getArray(babel_loader.exclude);
 
     excludes = excludes.reduce((accumulator, exclude) => {
@@ -72,6 +58,13 @@ export const exclude = (config: ConfigType, ...excludes: Array<Condition>) => {
     }, exclude_config);
 
     babel_loader.exclude = excludes;
-
-    return config;
 };
+
+export const overrideWebpackConfig = ({ webpackConfig, pluginOptions: {includes = [], excludes = []}}) => {
+    const { isFound, match } = getLoader(webpackConfig, loaderByName("babel-loader"));
+    if(isFound){
+        includes.forEach(path => include(match.loader, path))
+        excludes.forEach(path => exclude(match.loader, path))
+    }
+    return webpackConfig
+}
