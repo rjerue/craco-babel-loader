@@ -9,6 +9,33 @@ However, with [`react-app-rewired`](https://github.com/timarney/react-app-rewire
 
 See below for usage.
 
+## 🚨 Not maintained for react-app-rewired v2.x.x+
+
+I'm not maintaining this library for `react-app-rewired` v2.x.x+.
+
+Instead, please consider using: https://github.com/arackaf/customize-cra
+
+The following essentially emulates `react-app-rewire-babel-loader` which you can copy & paste into your override config file:
+
+```js
+// NOTE as of customize-cra v0.2.11
+
+const { babelInclude, getBabelLoader } = require("customize-cra");
+
+const include = (config, ...includes) => {
+    return babelInclude(includes)(config);
+};
+
+const babelExclude = exclude => config => {
+  getBabelLoader(config).exclude = exclude;
+  return config;
+};
+
+const exclude = (config, ...excludes) => {
+    return babelExclude(excludes)(config);
+};
+```
+
 ## Install
 
 
