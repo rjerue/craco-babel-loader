@@ -39,7 +39,7 @@
     "create-react-app"
   ],
   "dependencies": {
-    "@craco/craco": "^3.1.1"
+    "@craco/craco": "^5.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.3",
