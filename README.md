@@ -1,39 +1,12 @@
-This is a port of [react-app-rewire-babel-loader](https://github.com/dashed/react-app-rewire-babel-loader) to [`CRACO`](https://github.com/sharegate/craco) instead of [react-app-rewired](https://github.com/timarney/react-app-rewired). `react-app-rewired` is not being updated for version 2 of CRA, and I wanted to use the rewired babel loader with a solution designed for CRA 2.
+This is a port of [react-app-rewire-babel-loader](https://github.com/dashed/react-app-rewire-babel-loader) to [`CRACO`](https://github.com/sharegate/craco) instead of [react-app-rewired](https://github.com/timarney/react-app-rewired). `react-app-rewired` was not being updated for version 2 of CRA, and I wanted to use the rewired babel loader with a solution designed for CRA 2.
 
 > Rewire [`babel-loader`](https://github.com/babel/babel-loader) loader in your [`create-react-app`](https://github.com/facebookincubator/create-react-app) project using [`CRACO`](https://github.com/sharegate/craco).
 
-Say there is an awesome library you found on npm that you want to use within your **un-ejected**  [`create-react-app`](https://github.com/facebookincubator/create-react-app) project, but unfortunately, it's published in ES6+ (since `node_modules` doesn't go through `babel-loader`), so you cannot *really* use it.
+Say there is an awesome library you found on npm that you want to use within your **un-ejected**  [`create-react-app`](https://github.com/facebookincubator/create-react-app) project, but unfortunately, it's published in ES6+ (since `node_modules` doesn't go through `babel-loader`), so you cannot *really* use it. It's also effective for working with monorepos which was my original use case.
 
 However, with [`CRACO`](https://github.com/sharegate/craco) and this library, `craco-babel-loader`, you can use that awesome library you've found.
 
 See below for usage.
-
-## 🚨 Not maintained for react-app-rewired v2.x.x+
-
-I'm not maintaining this library for `react-app-rewired` v2.x.x+.
-
-Instead, please consider using: https://github.com/arackaf/customize-cra
-
-The following essentially emulates `react-app-rewire-babel-loader` which you can copy & paste into your override config file:
-
-```js
-// NOTE as of customize-cra v0.2.11
-
-const { babelInclude, getBabelLoader } = require("customize-cra");
-
-const include = (config, ...includes) => {
-    return babelInclude(includes)(config);
-};
-
-const babelExclude = exclude => config => {
-  getBabelLoader(config).exclude = exclude;
-  return config;
-};
-
-const exclude = (config, ...excludes) => {
-    return babelExclude(excludes)(config);
-};
-```
 
 ## Install
 
