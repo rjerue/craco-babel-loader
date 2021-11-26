@@ -13,7 +13,6 @@ module.exports = {
       plugin: cracoBabelLoader,
       options: {
         includes: [resolvePackage("../code-to-include")],
-        excludes: [/(node_modules|bower_components)/], //things you want to exclude here
       },
     },
   ],

@@ -2,7 +2,7 @@
 import { foo } from "code-to-include";
 
 function App() {
-  return <div className="App">{foo()}</div>;
+  return <div>{foo()}</div>;
 }
 
 export default App;
