@@ -1,7 +1,7 @@
 import { getLoader, loaderByName } from "@craco/craco";
 
 // see: https://webpack.js.org/configuration/module/#condition
-type Condition =
+export type Condition =
   | string
   | RegExp
   | Array<Condition>
@@ -15,7 +15,7 @@ type Condition =
       not?: Array<Condition>;
     };
 
-type LoaderRule = {
+export type LoaderRule = {
   include?: Condition;
   exclude?: Condition;
 };
@@ -61,16 +61,27 @@ const exclude = (babel_loader: LoaderRule, ...excludes: Array<Condition>) => {
   babel_loader.exclude = newExcludes;
 };
 
+type LoaderResult =
+  | { isFound: false; match: undefined }
+  | { isFound: true; match: { loader: LoaderRule } };
+
+export type OverrideWebpackConfigParams = {
+  webpackConfig: any;
+  pluginOptions: {
+    includes?: LoaderRule[];
+    excludes?: LoaderRule[];
+  };
+};
+
 export const overrideWebpackConfig = ({
   webpackConfig,
   pluginOptions: { includes = [], excludes = [] },
-}) => {
-  const { isFound, match } = getLoader(
+}: OverrideWebpackConfigParams): any => {
+  const result = getLoader(
     webpackConfig,
     loaderByName("babel-loader")
-  ) as
-    | { isFound: false; match: undefined }
-    | { isFound: true; match: { loader: LoaderRule } };
+  ) as LoaderResult;
+  const { isFound, match } = result;
   if (isFound) {
     includes.forEach((path) => include(match?.loader, path));
     excludes.forEach((path) => exclude(match?.loader, path));
