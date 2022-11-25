@@ -61,3 +61,7 @@ typings/
 dist/
 
 .vscode
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
