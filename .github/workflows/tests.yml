@@ -8,6 +8,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: yarn install --immutable --immutable-cache
+      - run: yarn install --immutable
       - run: yarn workspace craco-babel-loader build
       - run: yarn workspace cra-app test

@@ -5294,7 +5294,7 @@ __metadata:
     "@craco/craco": ^7.0.0
     microbundle: ^0.14.2
   peerDependencies:
-    "@craco/craco": ^6.4.2
+    "@craco/craco": ^7.0.0 || ^6.4.2
   languageName: unknown
   linkType: soft
 
