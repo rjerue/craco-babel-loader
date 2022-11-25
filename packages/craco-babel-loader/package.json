@@ -1,6 +1,6 @@
 {
   "name": "craco-babel-loader",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Rewire `babel-loader` loader in your `create-react-app` project using `craco`.",
   "source": "src/index.ts",
   "module": "dist/index.es.js",
@@ -27,12 +27,11 @@
     "webpack",
     "create-react-app"
   ],
-  "dependencies": {},
   "peerDependencies": {
-    "@craco/craco": "^6.4.2"
+    "@craco/craco": "^7.0.0 || ^6.4.2"
   },
   "devDependencies": {
-    "@craco/craco": "^6.4.2",
+    "@craco/craco": "^7.0.0",
     "microbundle": "^0.14.2"
   }
 }
